@@ -1,15 +1,30 @@
 .container {
+	width: 100%;
+	height: 100%;
+	display: flex;
 	padding: 2rem;
 	font-family: sans-serif;
-	max-width: 600px;
 	margin: 0 auto;
 }
 
+.leftSide {
+	height: 100%;
+	flex: 1;
+	padding-right: 2rem;
+}
+
+.rightSide {
+	height: 100%;
+	flex: 1;
+	padding-left: 2rem;
+	overflow: auto;
+	border-left: 1px solid #333;
+}
+
 .title {
-	.phase {
-		font-size: 0.6em;
-		color: #666;
-	}
+	font-size: 2em;
+	color: #666;
+	margin-bottom: 1rem;
 }
 
 .statusBar {
@@ -17,6 +32,16 @@
 	padding: 1rem;
 	border: 1px solid #333;
 	border-radius: 8px;
+
+	h3 {
+		font-size: 4rem;
+		margin-bottom: 20px;
+	}
+
+	p {
+		font-size: 1.5rem;
+		margin: 0.5rem 0;
+	}
 
 	.statusText {
 		&.playing {
@@ -49,6 +74,7 @@
 .volumeControl {
 	display: flex;
 	flex-direction: column;
+	flex-grow: 9;
 }
 
 .trackList {
@@ -78,4 +104,22 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+
+	button {
+		padding: 1.25rem;
+		text-align: left;
+		border: 1px solid #777777;
+		color: #fff;
+		cursor: pointer;
+		background: #353535;
+
+		&:hover {
+			background-color: #eee;
+			color: #000;
+		}
+
+		&.active {
+			background: #ddd;
+		}
+	}
 }
