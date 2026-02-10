@@ -27,7 +27,11 @@ export type RemoteAction =
 	| { type: 'NEXT_TRACK' }
 	| { type: 'PREV_TRACK' };
 
-export interface PeerMessage {
-	type: string;
-	payload?: any;
-}
+export type PeerMessage =
+	| { type: 'GREETING'; message: string }
+	| { type: 'WELCOME'; message: string }
+	| { type: 'HEARTBEAT' }
+	| { type: 'HEARTBEAT_ACK' }
+	| { type: 'PLAY_PAUSE' }
+	| { type: 'SET_VOLUME'; value: number }
+	| { type: 'SET_STATION'; station: Station };

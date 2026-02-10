@@ -21,7 +21,20 @@
 .showWhenPlayerConnected {
 	width: 100%;
 	height: 100%;
+	padding: 2rem;
+	font-family: sans-serif;
+	margin: 0 auto;
 	display: none;
+}
+
+.playerConnected {
+	.showWhenPlayerDisconnected {
+		display: none;
+	}
+
+	.showWhenPlayerConnected {
+		display: flex;
+	}
 }
 
 .leftSide {
@@ -164,6 +177,50 @@
 			pointer-events: none;
 			background: darkgoldenrod;
 			color: #fff;
+		}
+	}
+}
+
+.remoteSection {
+	display: inline-block;
+	width: auto;
+	padding: 20px;
+	background: rgba(0, 0, 0, 0.4);
+	margin-bottom: 20px;
+	border-radius: 12px;
+	align-items: center;
+	gap: 20px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+
+	.qrContainer {
+		background: white;
+		padding: 10px;
+		border-radius: 8px;
+		line-height: 0;
+
+		svg {
+			width: 150px;
+			height: 150px;
+		}
+	}
+
+	.remoteInfo {
+		.scanTitle {
+			margin: 0 0 8px 0;
+			color: #aaa;
+			text-transform: uppercase;
+			font-size: 0.8rem;
+			letter-spacing: 1px;
+		}
+
+		.statusConnected {
+			color: #00ccff;
+			font-weight: bold;
+		}
+
+		.statusWaiting {
+			color: #666;
+			font-size: 0.9rem;
 		}
 	}
 }
