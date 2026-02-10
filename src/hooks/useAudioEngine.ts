@@ -19,8 +19,6 @@ export const useAudioEngine = () => {
 
 		setStatus('loading');
 
-		console.log(currentStation)
-
 		const sound = new Howl({
 			src: [currentStation.url_resolved],
 			html5: true,
