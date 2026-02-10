@@ -1,10 +1,10 @@
 import { useAudioEngine } from './hooks/useAudioEngine';
 import { usePlayerStore } from './store/usePlayerStore';
 import tracksData from './api/80s.json';
-import type { Track } from './types';
+import type { Station } from './types';
 import styles from './App.module.scss';
 
-const stationList: Track[] = tracksData;
+const stationList: Station[] = tracksData;
 
 function App() {
 	useAudioEngine();
