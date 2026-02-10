@@ -1,10 +1,27 @@
-.container {
+.container,
+.serverView,
+.controllerView {
+	width: 100%;
+	height: 100%;
+}
+
+.controllerView {
+	display: none;
+}
+
+.showWhenPlayerDisconnected {
 	width: 100%;
 	height: 100%;
 	display: flex;
 	padding: 2rem;
 	font-family: sans-serif;
 	margin: 0 auto;
+}
+
+.showWhenPlayerConnected {
+	width: 100%;
+	height: 100%;
+	display: none;
 }
 
 .leftSide {
@@ -41,6 +58,16 @@
 	p {
 		font-size: 1.5rem;
 		margin: 0.5rem 0;
+	}
+
+	.nowPlaying {
+		font-size: 1.25rem;
+		line-height: 1.5;
+		margin-bottom: 0.5rem;
+
+		i {
+			opacity: 0.5;
+		}
 	}
 
 	.statusText {

@@ -4,6 +4,7 @@ export interface Station {
 	name?: string;
 	artist?: string;
 	coverUrl?: string;
+	country?: string;
 }
 
 export type PlaybackStatus = 'playing' | 'paused' | 'loading' | 'error';
