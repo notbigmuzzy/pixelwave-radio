@@ -5,6 +5,7 @@ export default defineConfig({
 	plugins: [react()],
 	base: '/pixelwave-radio/',
 	server: {
+		host: true,
 		hmr: false
 	}
 })
