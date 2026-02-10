@@ -44,6 +44,8 @@
 	}
 
 	.statusText {
+		padding: 0 10px;
+
 		&.playing {
 			color: green;
 		}
@@ -63,6 +65,7 @@
 .playButton {
 	padding: 10px 20px;
 	font-size: 1.2rem;
+	width: 150px;
 	cursor: pointer;
 
 	&:disabled {
@@ -119,7 +122,9 @@
 		}
 
 		&.active {
-			background: #ddd;
+			pointer-events: none;
+			background: darkgoldenrod;
+			color: #fff;
 		}
 	}
 }

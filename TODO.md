@@ -4,8 +4,8 @@
 
 ---
 
-# PHASE 1: Audio Engine & Architecture (The Core)
-1.  **Stack & Types:**
+# PHASE 1: Audio Engine & Architecture - DONE
+<!-- 1.  **Stack & Types:**
     *   Setup: `npm create vite@latest pixelwave-radio -- --template react-ts`.
     *   Defining types: `Track`, `PlayerState`, `PeerMessage`.
 2.  **State Management (Zustand):**
@@ -14,7 +14,7 @@
 3.  **The Audio Hook `useAudio(url)`:**
     *   Hook wrapping `new Audio()`.
     *   Exposes methods: `play()`, `pause()`, `seek(time)`.
-    *   **Challenge:** Ensure audio continues playing even if the component re-renders (use `useRef` for the audio instance).
+    *   **Challenge:** Ensure audio continues playing even if the component re-renders (use `useRef` for the audio instance). -->
 
 # PHASE 2: The Visuals (Eye Candy)
 1.  **Immersive UI:**

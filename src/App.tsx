@@ -8,6 +8,7 @@ const stationList: Station[] = tracksData;
 
 function App() {
 	useAudioEngine();
+
 	const {
 		currentStation,
 		isPlaying,
@@ -27,7 +28,12 @@ function App() {
 					{currentStation ? (
 						<div>
 							<p><strong>{currentStation.name}</strong></p>
-							<p>Status: <span className={`${styles.statusText} ${isPlaying ? styles.playing : styles.paused}`}>{status}</span></p>
+							<p>
+								Status:
+								<span className={`${styles.statusText} ${isPlaying ? styles.playing : styles.paused}`}>
+									{status}
+								</span>
+							</p>
 						</div>
 					) : (
 						<p>No Track Selected</p>
@@ -61,6 +67,7 @@ function App() {
 					{stationList.map(station => (
 						<button
 							key={station.stationuuid}
+							className={`${currentStation?.stationuuid === station.stationuuid ? styles.active : ''}`}
 							onClick={() => setStation(station)}
 						>
 							{station.name}
