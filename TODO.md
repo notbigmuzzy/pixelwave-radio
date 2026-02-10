@@ -6,7 +6,7 @@
 
 # PHASE 1: Audio Engine & Architecture (The Core)
 1.  **Stack & Types:**
-    *   Setup: `npm create vite@latest sonicsync -- --template react-ts`.
+    *   Setup: `npm create vite@latest pixelwave-radio -- --template react-ts`.
     *   Defining types: `Track`, `PlayerState`, `PeerMessage`.
 2.  **State Management (Zustand):**
     *   Why Zustand? Because React Context creates too many re-renders for an audio player (every second changes state).
