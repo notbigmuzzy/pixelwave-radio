@@ -29,7 +29,11 @@ function App() {
 							<h3>Now Playing:</h3>
 							{currentStation ? (
 								<div>
-									<p className={styles.nowPlaying}><strong>{currentStation.name}</strong> <i>from <em>{currentStation.country}</em></i></p>
+									<p className={styles.nowPlaying}>
+										{currentStation.favicon && <img src={currentStation.favicon} alt="Station Cover" className={styles.coverImage} />}
+										<strong>{currentStation.name}</strong>
+										<i>from <em>{currentStation.country}</em></i>
+									</p>
 									<p>
 										Status:
 										<span className={`${styles.statusText} ${isPlaying ? styles.playing : styles.paused}`}>

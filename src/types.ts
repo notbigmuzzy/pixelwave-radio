@@ -5,6 +5,7 @@ export interface Station {
 	artist?: string;
 	coverUrl?: string;
 	country?: string;
+	favicon?: string;
 }
 
 export type PlaybackStatus = 'playing' | 'paused' | 'loading' | 'error';
