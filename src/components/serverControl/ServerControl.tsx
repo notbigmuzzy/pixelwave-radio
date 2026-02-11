@@ -57,13 +57,11 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 						<img src={bgImage} alt="Background" className={styles.radioIcon} />
 						<i className={styles.overlay}></i>
 						<div className={styles.topBar}>
-							<p>
-								<span className={`${styles.statusText} ${isPlaying ? styles.playing : styles.paused}`}>
-									{status}
-								</span>
+							<p className={`${styles.statusText} ${isPlaying ? styles.playing : styles.paused}`}>
+								{status}
 							</p>
 							<div className={styles.volumeControl}>
-								<label>Volume: {Math.round(volume * 100)}%</label>
+								<label>{Math.round(volume * 100)}%</label>
 								<input
 									type="range"
 									min="0"
@@ -78,7 +76,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 								onClick={togglePlayPause}
 								disabled={!currentStation}
 							>
-								{isPlaying ? '⏸ Pause' : '▶ Play'}
+								{isPlaying ? 'Pause' : 'Play'}
 							</button>
 
 						</div>
@@ -97,7 +95,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 									<p>No Track Selected</p>
 								)}
 							</div>
-							{/* <div className={styles.remoteSection}>
+							<div className={styles.remoteSection}>
 								{peerId ? (
 									<div className={styles.qrContainer}>
 										<QRCodeSVG value={`${window.location.protocol}//${window.location.host}?remote=${peerId}`} size={100} />
@@ -105,7 +103,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 								) : (
 									<span>Generisanje QR Koda...</span>
 								)}
-							</div> */}
+							</div>
 						</div>
 						<div className={styles.rightSide}>
 							<div className={styles.stationList}>
