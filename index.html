@@ -3,9 +3,18 @@
 
 <head>
 	<meta charset="UTF-8" />
-	<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+	<link rel="icon" type="image/svg+xml" href="favico.ico" />
+	<link rel="manifest" href="manifest.json" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>pixelwave-radio</title>
+	<meta name="theme-color" content="#000000" />
+	<title>P I X E L W A V E ♫♪ R A D I O</title>
+	<script>
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', () => {
+				navigator.serviceWorker.register('sw.js');
+			});
+		}
+	</script>
 </head>
 
 <body>
