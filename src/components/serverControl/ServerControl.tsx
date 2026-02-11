@@ -138,13 +138,15 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 										</button>
 									</div>
 									<div className={styles.leftSide}>
-										<div className={styles.statusBar}>
+										<div className={styles.playingDetails}>
 											{currentStation ? (
 												<div>
 													<p className={styles.nowPlaying}>
-														{currentStation.favicon && <img src={currentStation.favicon} alt="Station Cover" className={styles.coverImage} />}
 														<strong>{currentStation.name}</strong>
-														<i><em>{currentStation.country}</em></i>
+														<i className={styles.nowPlayingDetails}>
+															{currentStation.favicon && <img src={currentStation.favicon} alt="Station Cover" className={styles.coverImage} />}
+															<em>{currentStation.country}</em>
+														</i>
 													</p>
 												</div>
 											) : (
@@ -178,6 +180,12 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 													</button>
 												)) : null}
 											</div>
+											<div className={styles.randomButtonContainer}>
+												<hr />
+												<button className={styles.randomButton}>
+													I'm feeling lucky!
+												</button>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -187,7 +195,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 				</div>
 			</div>
 			<div className={styles.showWhenPlayerConnected}>
-				<div className={styles.statusBar}>
+				<div className={styles.playingDetails}>
 					<h3>Now Playing:</h3>
 					{currentStation ? (
 						<div>

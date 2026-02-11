@@ -163,7 +163,7 @@
 	overflow-x: hidden;
 	overflow-y: auto;
 	scrollbar-width: thin;
-	scrollbar-color: lightgreen transparent;
+	scrollbar-color: rgba(255, 255, 255, 0.05) transparent;
 }
 
 .rightSide {
@@ -183,7 +183,7 @@
 	margin-bottom: 1rem;
 }
 
-.statusBar {
+.playingDetails {
 	h3 {
 		font-size: 4rem;
 		margin-bottom: 20px;
@@ -203,17 +203,18 @@
 		top: -20px;
 
 		img {
-			width: 80px;
-			height: 80px;
-			border-radius: 50%;
+			width: 60px;
+			height: 60px;
 			object-fit: cover;
 			font-size: 8px;
 			text-align: center;
 			font-weight: bold;
+			backdrop-filter: blur(1.5rem);
+			border-radius: 4px;
 		}
 
 		strong {
-			font-size: 3.5rem;
+			font-size: 4rem;
 			font-weight: bold;
 			line-height: 1.2;
 			display: -webkit-box;
@@ -221,10 +222,30 @@
 			-webkit-line-clamp: 3;
 			overflow: hidden;
 			line-clamp: 3;
+			width: 100%;
+			word-break: break-word;
+		}
+	}
+
+	.nowPlayingDetails {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+
+		em {
+			position: relative;
+			background: rgba(0, 0, 0, 0.05);
+			color: #ffffff;
+			padding: 5px 10px;
+			backdrop-filter: blur(1.5rem);
+			font-size: 12px;
+			font-weight: bold;
+			border-radius: 4px;
 		}
 
-		i {
-			opacity: 0.5;
+		img+em {
+			left: -5px;
+			bottom: -10px;
 		}
 	}
 }
@@ -274,11 +295,12 @@
 	position: relative;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(133, 133, 133, 0.25);
-	backdrop-filter: blur(12px);
-	border-radius: 8px;
-	padding: 1.25rem;
+	background-color: rgba(95, 95, 95, 0.25);
+	backdrop-filter: blur(1.5rem);
+	border-radius: 1.5rem;
+	padding: 1.25rem 0.75rem 1.25rem 1.25rem;
 	overflow: hidden;
+	border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .decadeTitle {
@@ -314,6 +336,50 @@
 		background-color: rgba(255, 255, 255, 0.05);
 		z-index: 1;
 		min-height: 50px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.2);
+			color: #000;
+		}
+
+		&.active {
+			pointer-events: none;
+			background: #000;
+			color: #fff;
+		}
+	}
+}
+
+.randomButtonContainer {
+	display: flex;
+	flex-direction: column;
+	padding-right: 10px;
+
+	hr {
+		display: block;
+		width: 95%;
+		opacity: 0.25;
+		left: 0;
+		right: 0;
+		margin: 1rem auto;
+	}
+
+	button {
+		display: block;
+		padding: 1rem;
+		text-align: left;
+		border: none;
+		line-height: 1;
+		border-radius: 10px;
+		color: #fff;
+		cursor: pointer;
+		background-color: rgba(255, 255, 255, 0.05);
+		z-index: 1;
+		min-height: 50px;
+		width: 100%;
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
