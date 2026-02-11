@@ -44,10 +44,8 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 		currentStation,
 		isPlaying,
 		status,
-		volume,
 		togglePlayPause,
-		setStation,
-		setVolume
+		setStation
 	} = usePlayerStore();
 
 	useEffect(() => {
@@ -58,7 +56,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 				togglePlayPause();
 				break;
 			case 'SET_VOLUME':
-				setVolume(lastMessage.value);
+				// setVolume(lastMessage.value);
 				break;
 			case 'SET_STATION':
 				if (lastMessage.station) {
@@ -67,7 +65,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 				break;
 		}
 
-	}, [lastMessage, togglePlayPause, setVolume, setStation]);
+	}, [lastMessage, togglePlayPause, setStation]);
 
 	const settings = {
 		dots: false,
@@ -130,17 +128,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 										<p className={`${styles.statusText} ${isPlaying ? styles.playing : styles.paused}`}>
 											{status}
 										</p>
-										<div className={styles.volumeControl}>
-											<label>{Math.round(volume * 100)}%</label>
-											<input
-												type="range"
-												min="0"
-												max="1"
-												step="0.01"
-												value={volume}
-												onChange={(e) => setVolume(parseFloat(e.target.value))}
-											/>
-										</div>
+										<h2 className={styles.decadeTitle}>{decade.label}</h2>
 										<button
 											className={styles.playButton}
 											onClick={togglePlayPause}
@@ -179,7 +167,6 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 											onMouseDown={(e) => e.stopPropagation()}
 											onTouchStart={(e) => e.stopPropagation()}
 										>
-											<h2 className={styles.decadeTitle}>{decade.label}</h2>
 											<div className={styles.stationList}>
 												{isSlideVisible(index) ? decade.data.map((station: any) => (
 													<button
