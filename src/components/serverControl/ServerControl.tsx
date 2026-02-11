@@ -29,9 +29,14 @@ interface ServerControlProps {
 export const ServerControl = ({ peerId, connection, lastMessage }: ServerControlProps) => {
 	useAudioEngine();
 
+	const getInitialSlide = () => {
+		const stored = localStorage.getItem('pixelwave_slide_index');
+		return stored ? parseInt(stored, 10) : 4; // Default to 80s (index 4)
+	};
+
 	const [nav1, setNav1] = useState<Slider | null>(null);
 	const [nav2, setNav2] = useState<Slider | null>(null);
-	const [activeSlide, setActiveSlide] = useState(4);
+	const [activeSlide, setActiveSlide] = useState(getInitialSlide);
 	const slider1 = useRef<Slider>(null);
 	const slider2 = useRef<Slider>(null);
 
@@ -67,6 +72,8 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 
 	}, [lastMessage, togglePlayPause, setStation]);
 
+	const initialSlideIndex = getInitialSlide();
+
 	const settings = {
 		dots: false,
 		infinite: true,
@@ -74,10 +81,11 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		arrows: true,
-		initialSlide: 4, // 80s
+		initialSlide: initialSlideIndex,
 		asNavFor: nav2 as Slider | undefined,
 		beforeChange: (_current: number, next: number) => {
 			setActiveSlide(next);
+			localStorage.setItem('pixelwave_slide_index', next.toString());
 			if (document.activeElement instanceof HTMLElement) {
 				document.activeElement.blur();
 			}
@@ -91,7 +99,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		arrows: false,
-		initialSlide: 4,
+		initialSlide: initialSlideIndex,
 		fade: true,
 		asNavFor: nav1 as Slider | undefined,
 		accessibility: false,
