@@ -9,11 +9,8 @@ import type { PeerMessage } from '../../types';
 import type { DataConnection } from 'peerjs';
 import styles from './ServerControl.module.scss';
 import defaultBg from '../../assets/80s.jpg';
-
-// Dynamic imports for JSON data and Images
 const stationDataModules = import.meta.glob('../../api/*.json', { eager: true, import: 'default' });
 const bgModules = import.meta.glob('../../assets/*.jpg', { eager: true, import: 'default' });
-
 const decadeIds = ['40s', '50s', '60s', '70s', '80s', '90s', '00s', '10s', '20s'];
 
 const decades = decadeIds.map(id => ({
@@ -34,6 +31,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 
 	const [nav1, setNav1] = useState<Slider | null>(null);
 	const [nav2, setNav2] = useState<Slider | null>(null);
+	const [activeSlide, setActiveSlide] = useState(4);
 	const slider1 = useRef<Slider>(null);
 	const slider2 = useRef<Slider>(null);
 
@@ -80,7 +78,8 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 		arrows: true,
 		initialSlide: 4, // 80s
 		asNavFor: nav2 as Slider | undefined,
-		beforeChange: () => {
+		beforeChange: (current: number, next: number) => {
+			setActiveSlide(next);
 			if (document.activeElement instanceof HTMLElement) {
 				document.activeElement.blur();
 			}
@@ -101,6 +100,13 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 		draggable: false
 	};
 
+	const isSlideVisible = (index: number) => {
+		const total = decades.length;
+		const prev = (activeSlide - 1 + total) % total;
+		const next = (activeSlide + 1) % total;
+		return index === activeSlide || index === prev || index === next;
+	};
+
 	return (
 		<div className={`${styles.container} ${connection ? styles.playerConnected : styles.playerDisconnected}`}>
 			<div className={styles.showWhenPlayerDisconnected}>
@@ -115,7 +121,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 						</Slider>
 					</div>
 					<Slider {...settings} ref={slider1} className={styles.slickSlider}>
-						{decades.map((decade) => (
+						{decades.map((decade, index) => (
 							<div key={decade.id} className={styles.slideContainer}>
 								<div className={styles.slide}>
 									<img src={decade.bg} alt="Background" className={styles.radioIcon} />
@@ -168,17 +174,19 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 										</div>
 									</div>
 									<div className={styles.rightSide}>
-										<h2 className={styles.decadeTitle}>{decade.label}</h2>
-										<div className={styles.stationList}>
-											{decade.data.map((station: any) => (
-												<button
-													key={station.stationuuid}
-													className={`${currentStation?.stationuuid === station.stationuuid ? styles.active : ''}`}
-													onClick={() => setStation(station)}
-												>
-													{station.name}
-												</button>
-											))}
+										<div className={styles.stationListContainer}>
+											<h2 className={styles.decadeTitle}>{decade.label}</h2>
+											<div className={styles.stationList}>
+												{isSlideVisible(index) ? decade.data.map((station: any) => (
+													<button
+														key={station.stationuuid}
+														className={`${currentStation?.stationuuid === station.stationuuid ? styles.active : ''}`}
+														onClick={() => setStation(station)}
+													>
+														{station.name}
+													</button>
+												)) : null}
+											</div>
 										</div>
 									</div>
 								</div>

@@ -57,15 +57,6 @@
 	outline: none;
 }
 
-.decadeTitle {
-	color: lightgreen;
-	text-align: center;
-	margin-bottom: 2rem;
-	text-shadow: 0 0 10px lightgreen;
-	font-size: 3rem;
-	font-weight: bold;
-}
-
 .sliderWrapper {
 	.backgroundSliderWrapper {
 		position: absolute;
@@ -74,6 +65,7 @@
 		width: 100%;
 		height: 100%;
 		z-index: 0;
+		opacity: 0.25;
 	}
 
 	.bgSlider {
@@ -110,7 +102,7 @@
 	margin: 0 auto;
 	border-radius: 20px;
 	background-color: #333;
-	box-shadow: 4px 12px 32px rgba(0, 0, 0, 0.5);
+	box-shadow: 8px 16px 32px rgba(0, 0, 0, 0.75);
 
 	&>img {
 		position: absolute;
@@ -129,7 +121,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
 	}
 
 	div {
@@ -272,20 +264,38 @@
 	}
 }
 
+.stationListContainer {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(133, 133, 133, 0.25);
+	backdrop-filter: blur(12px);
+	border-radius: 8px;
+	padding: 1.25rem;
+	overflow: hidden;
+}
+
+.decadeTitle {
+	color: #fff;
+	text-align: left;
+	margin-bottom: 1rem;
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-align: right;
+}
+
 .stationList {
 	position: relative;
 	width: 100%;
 	flex: 1;
 	min-height: 0;
-	/* Important for firefox flex scrolling */
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	background-color: rgba(133, 133, 133, 0.25);
-	overflow: hidden;
-	backdrop-filter: blur(12px);
-	border-radius: 8px;
-	padding: 1.25rem;
 	overflow: auto;
 	scrollbar-width: thin;
 	scrollbar-color: rgba(255, 255, 255, 0.05) transparent;
