@@ -127,6 +127,10 @@
 	div {
 		z-index: 1;
 	}
+
+	@media screen and (max-height: 600px) {
+		height: 95%;
+	}
 }
 
 .showWhenPlayerConnected {
