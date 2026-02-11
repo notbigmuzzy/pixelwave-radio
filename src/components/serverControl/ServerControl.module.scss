@@ -11,20 +11,92 @@
 	display: none;
 }
 
-.slider {
+.sliderWrapper {
 	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	width: 100%;
+	height: 100%;
+	display: block;
 
-	&>img {
+	background-color: #000;
+}
+
+.slickSlider {
+	width: 100%;
+	height: 100%;
+
+	:global(.slick-list),
+	:global(.slick-track) {
+		height: 100%;
+	}
+
+	:global(.slick-slide) {
+		height: 100%;
+
+		&>div {
+			height: 100%;
+		}
+	}
+
+	:global(.slick-prev) {
+		left: 25px;
+		z-index: 10;
+	}
+
+	:global(.slick-next) {
+		right: 25px;
+		z-index: 10;
+	}
+}
+
+.slideContainer {
+	height: 100%;
+	width: 100%;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+	outline: none;
+}
+
+.decadeTitle {
+	color: lightgreen;
+	text-align: center;
+	margin-bottom: 2rem;
+	text-shadow: 0 0 10px lightgreen;
+	font-size: 3rem;
+	font-weight: bold;
+}
+
+.sliderWrapper {
+	.backgroundSliderWrapper {
 		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
-		object-fit: cover;
 		z-index: 0;
+	}
+
+	.bgSlider {
+		width: 100%;
+		height: 100%;
+
+		:global(.slick-list),
+		:global(.slick-track),
+		:global(.slick-slide),
+		:global(.slick-slide > div) {
+			height: 100%;
+		}
+	}
+
+	.bgSlide {
+		width: 100%;
+		height: 100%;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
 	}
 }
 
@@ -100,6 +172,7 @@
 
 .rightSide {
 	display: flex;
+	flex-direction: column;
 	height: 100%;
 	width: 40%;
 	flex: 1;
@@ -202,7 +275,9 @@
 .stationList {
 	position: relative;
 	width: 100%;
-	height: 100%;
+	flex: 1;
+	min-height: 0;
+	/* Important for firefox flex scrolling */
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
