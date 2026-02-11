@@ -76,8 +76,8 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 
 	const settings = {
 		dots: false,
-		infinite: true,
-		speed: 500,
+		infinite: false,
+		speed: 450,
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		arrows: true,
@@ -94,8 +94,8 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 
 	const bgSettings = {
 		dots: false,
-		infinite: true,
-		speed: 500,
+		infinite: false,
+		speed: 450,
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		arrows: false,
@@ -133,16 +133,19 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 									<img src={decade.bg} alt="Background" className={styles.radioIcon} />
 									<i className={styles.overlay}></i>
 									<div className={styles.topBar}>
-										<p className={`${styles.statusText} ${isPlaying ? styles.playing : styles.paused}`}>
-											{status}
-										</p>
+										<p>
+											<button
+												className={styles.favouriteButton}
+											>
+												★ Favourite
+											</button>										</p>
 										<h2 className={styles.decadeTitle}>{decade.label}</h2>
 										<button
-											className={styles.playButton}
+											className={`${styles.playButton} ${isPlaying ? styles.playing : styles.paused}`}
 											onClick={togglePlayPause}
 											disabled={!currentStation}
 										>
-											{isPlaying ? 'Pause' : 'Play'}
+											{isPlaying ? 'Pause' : 'Play ►'}
 										</button>
 									</div>
 									<div className={styles.leftSide}>
