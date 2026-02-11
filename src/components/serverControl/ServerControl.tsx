@@ -206,21 +206,15 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 				</div>
 			</div>
 			<div className={styles.showWhenPlayerConnected}>
+				<div className={styles.visualizerContainer}></div>
+
 				<div className={styles.playingDetails}>
-					<h3>Now Playing:</h3>
 					{currentStation ? (
-						<div>
-							<p className={styles.nowPlaying}>
-								{currentStation.favicon && <img src={currentStation.favicon} alt="Station Cover" className={styles.coverImage} />}
-								<strong>{currentStation.name}</strong>
-								<i><em>{currentStation.country}</em></i>
-							</p>
-							<p>
-								<span className={`${styles.statusText} ${isPlaying ? styles.playing : styles.paused}`}>
-									{status}
-								</span>
-							</p>
-						</div>
+						<p className={styles.nowPlaying}>
+							{currentStation.favicon && <img src={currentStation.favicon} alt="Station Cover" className={styles.coverImage} />}
+							<strong>{currentStation.name}</strong>
+							<i><em>{currentStation.country}</em></i>
+						</p>
 					) : (
 						<p>No Track Selected</p>
 					)}
