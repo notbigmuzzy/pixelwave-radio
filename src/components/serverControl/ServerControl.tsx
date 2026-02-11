@@ -78,7 +78,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 		arrows: true,
 		initialSlide: 4, // 80s
 		asNavFor: nav2 as Slider | undefined,
-		beforeChange: (current: number, next: number) => {
+		beforeChange: (_current: number, next: number) => {
 			setActiveSlide(next);
 			if (document.activeElement instanceof HTMLElement) {
 				document.activeElement.blur();
