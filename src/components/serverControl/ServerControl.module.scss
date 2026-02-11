@@ -1,6 +1,8 @@
 .container,
 .serverView,
-.controllerView {
+.controllerView,
+.showWhenPlayerDisconnected,
+.slider {
 	width: 100%;
 	height: 100%;
 }
@@ -9,20 +11,64 @@
 	display: none;
 }
 
-.showWhenPlayerDisconnected {
-	width: 100%;
-	height: 100%;
+.slider {
+	position: relative;
 	display: flex;
-	padding: 2rem;
-	font-family: sans-serif;
+	justify-content: center;
+	align-items: center;
+
+	&>img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: 0;
+	}
+}
+
+.slide {
+	position: relative;
+	width: 80%;
+	height: 80%;
+	display: flex;
+	overflow: hidden;
+	padding: 4rem 2rem 2rem;
 	margin: 0 auto;
+	border-radius: 20px;
+	background-color: #333;
+	box-shadow: 4px 12px 32px rgba(0, 0, 0, 0.5);
+
+	&>img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: 0;
+	}
+
+	.overlay {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+	}
+
+	div {
+		z-index: 1;
+	}
 }
 
 .showWhenPlayerConnected {
 	width: 100%;
 	height: 100%;
 	padding: 2rem;
-	font-family: sans-serif;
 	margin: 0 auto;
 	display: none;
 }
@@ -38,17 +84,27 @@
 }
 
 .leftSide {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
 	height: 100%;
 	flex: 1;
-	padding-right: 2rem;
+	flex-basis: 60%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: lightgreen transparent;
 }
 
 .rightSide {
 	height: 100%;
 	flex: 1;
+	flex-basis: 40%;
 	padding-left: 2rem;
 	overflow: auto;
-	border-left: 1px solid #333;
+	scrollbar-width: thin;
+	scrollbar-color: lightgreen transparent;
 }
 
 .title {
@@ -58,11 +114,6 @@
 }
 
 .statusBar {
-	margin-bottom: 2rem;
-	padding: 1rem;
-	border: 1px solid #333;
-	border-radius: 8px;
-
 	h3 {
 		font-size: 4rem;
 		margin-bottom: 20px;
@@ -70,24 +121,36 @@
 
 	p {
 		font-size: 1.5rem;
-		margin: 0.5rem 0;
 	}
 
 	.nowPlaying {
 		display: flex;
-		align-items: center;
+		flex-direction: column;
 		font-size: 1.25rem;
 		line-height: 1.5;
-		margin-bottom: 0.5rem;
 		gap: 10px;
+		position: relative;
+		top: -20px;
 
 		img {
-			width: 50px;
-			height: 50px;
+			width: 80px;
+			height: 80px;
+			border-radius: 50%;
 			object-fit: cover;
 			font-size: 8px;
 			text-align: center;
 			font-weight: bold;
+		}
+
+		strong {
+			font-size: 3.5rem;
+			font-weight: bold;
+			line-height: 1.2;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 3;
+			overflow: hidden;
+			line-clamp: 3;
 		}
 
 		i {
@@ -119,6 +182,9 @@
 	font-size: 1.2rem;
 	width: 150px;
 	cursor: pointer;
+	background-color: transparent;
+	outline: none;
+	border: none;
 
 	&:disabled {
 		cursor: not-allowed;
@@ -128,8 +194,12 @@
 
 .volumeControl {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	flex-grow: 9;
+
+	input {
+		flex-grow: 9;
+	}
 }
 
 .trackList {
@@ -156,21 +226,30 @@
 }
 
 .stationList {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+	background-color: rgba(255, 255, 255, 0.25);
+	overflow: hidden;
+	backdrop-filter: blur(10px);
+	border-radius: 8px;
+	padding: 1.25rem;
 
 	button {
-		padding: 1.25rem;
+		padding: 1rem;
 		text-align: left;
-		border: 1px solid #777777;
+		border: 1px solid rgba(255, 255, 255, 0.25);
+		line-height: 1.2;
+		border-radius: 10px;
 		color: #fff;
 		cursor: pointer;
-		background: #353535;
+		background-color: rgba(255, 255, 255, 0.25);
+		z-index: 1;
 
 		&:hover {
-			background-color: #eee;
-			color: #000;
+			background-color: rgba(255, 255, 255, 0.2);
+			color: #750000;
 		}
 
 		&.active {
@@ -182,8 +261,8 @@
 }
 
 .remoteSection {
-	display: inline-block;
-	width: auto;
+	width: 212px;
+	height: 212px;
 	padding: 20px;
 	background: rgba(0, 0, 0, 0.4);
 	margin-bottom: 20px;
@@ -223,4 +302,16 @@
 			font-size: 0.9rem;
 		}
 	}
+}
+
+.topBar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 20px;
+	gap: 20px;
 }
