@@ -165,7 +165,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 										<div
 											className={styles.stationListContainer}
 											onMouseDown={(e) => e.stopPropagation()}
-											onTouchStart={(e) => e.stopPropagation()}
+											onTouchMove={(e) => e.stopPropagation()}
 										>
 											<div className={styles.stationList}>
 												{isSlideVisible(index) ? decade.data.map((station: any) => (
