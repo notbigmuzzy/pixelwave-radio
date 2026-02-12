@@ -46,6 +46,36 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 		setNav2(slider2.current);
 	}, []);
 
+	const [isLoadingRandom, setIsLoadingRandom] = useState(false);
+
+	const playRandomStation = async (decadeId: string) => {
+		if (isLoadingRandom) return;
+		setIsLoadingRandom(true);
+
+		try {
+			const tag = decadeId;
+			const cacheBuster = new Date().getTime();
+			const response = await fetch(`https://de1.api.radio-browser.info/json/stations/search?tag=${tag}&limit=5&order=random&hidebroken=true&https=true&_=${cacheBuster}`, {
+				cache: 'no-store'
+			});
+
+			if (!response.ok) throw new Error('Failed to fetch random stations');
+
+			const stations = await response.json();
+
+			if (stations && stations.length > 0) {
+				const randomStation = stations[0];
+				setStation(randomStation);
+			} else {
+				console.warn('No random stations found');
+			}
+		} catch (error) {
+			console.error('Error fetching random station:', error);
+		} finally {
+			setIsLoadingRandom(false);
+		}
+	};
+
 	const {
 		currentStation,
 		isPlaying,
@@ -153,7 +183,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 										<div className={styles.playingDetails}>
 											{currentStation ? (
 												<div>
-													<p className={styles.nowPlaying}>
+													<div className={styles.nowPlaying}>
 														<div className={styles.stationInfo}>
 															{currentStation.favicon && <img src={currentStation.favicon} alt="Station Cover" className={styles.coverImage} />}
 															<strong><i></i>{currentStation.name}</strong>
@@ -161,10 +191,10 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 														<i className={styles.nowPlayingDetails}>
 															<em>{currentStation.country}</em>
 														</i>
-													</p>
+													</div>
 												</div>
 											) : (
-												<p className={styles.noTrack}>No Track Selected</p>
+												<p className={styles.noTrack}>No Station Selected</p>
 											)}
 										</div>
 										{currentStation && (
@@ -179,7 +209,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 															level="H"
 															marginSize={2}
 														/>
-														{/* <div className={styles.qrOverlay}>PIXELWAVE</div> */}
+
 													</div>
 												) : (
 													<span>Generisanje QR Koda...</span>
@@ -206,8 +236,21 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 											</div>
 											<div className={styles.randomButtonContainer}>
 												<hr />
-												<button className={styles.randomButton}>
-													I'm feeling lucky!
+												<button
+													className={styles.randomButton}
+													onClick={() => playRandomStation(decade.id)}
+													disabled={isLoadingRandom}
+												>
+													{isLoadingRandom ? (
+														<>
+															<span className={styles.spinner}></span>
+															Finding station...
+														</>
+													) : (
+														<>
+															I'm feeling lucky! <i style={{ width: '100%' }} /> ♪♫
+														</>
+													)}
 												</button>
 											</div>
 										</div>
@@ -233,7 +276,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 							</i>
 						</p>
 					) : (
-						<p>No Track Selected</p>
+						<p>No Station Selected</p>
 					)}
 				</div>
 			</div>
