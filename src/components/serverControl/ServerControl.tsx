@@ -1,12 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { QRCodeSVG } from 'qrcode.react';
 import { usePlayerStore } from '../../store/usePlayerStore';
 import { useAudioEngine } from '../../hooks/useAudioEngine';
 import type { PeerMessage, Station } from '../../types';
 import type { DataConnection } from 'peerjs';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import styles from './ServerControl.module.scss';
 import defaultBg from '../../assets/80s.jpg';
 import { ButterchurnVisualizer } from './ButterchurnVisualizer';
@@ -202,6 +202,8 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 										<p>
 											<button
 												className={`${styles.favouriteButton} ${isFavourite(currentStation) ? styles.favorited : ''}`}
+												onMouseDown={(e) => e.stopPropagation()}
+												onTouchMove={(e) => e.stopPropagation()}
 												onClick={toggleFavourite}
 												disabled={!currentStation}
 											>
@@ -213,6 +215,8 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 										</h2>
 										<button
 											className={`${styles.playButton} ${isPlaying ? styles.playing : styles.paused}`}
+											onMouseDown={(e) => e.stopPropagation()}
+											onTouchMove={(e) => e.stopPropagation()}
 											onClick={togglePlayPause}
 											disabled={!currentStation}
 										>
