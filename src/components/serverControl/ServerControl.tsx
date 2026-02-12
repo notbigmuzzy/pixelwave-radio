@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { QRCodeSVG } from 'qrcode.react';
 import { usePlayerStore } from '../../store/usePlayerStore';
 import { useAudioEngine } from '../../hooks/useAudioEngine';
-import type { PeerMessage } from '../../types';
+import type { PeerMessage, Station } from '../../types';
 import type { DataConnection } from 'peerjs';
 import styles from './ServerControl.module.scss';
 import defaultBg from '../../assets/80s.jpg';
@@ -83,15 +83,50 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 		setStation
 	} = usePlayerStore();
 
+	const [favourites, setFavourites] = useState<Station[]>(() => {
+		try {
+			const stored = localStorage.getItem('pixelwave_favourites');
+			return stored ? JSON.parse(stored) : [];
+		} catch (e) {
+			console.error('Failed to parse favourites', e);
+			return [];
+		}
+	});
+
+	const isFavourite = (station: Station | null) => {
+		if (!station?.stationuuid) return false;
+		return favourites.some(f => f.stationuuid === station.stationuuid);
+	};
+
+	const toggleFavourite = () => {
+		if (!currentStation || !currentStation.stationuuid) return;
+
+		let newFavourites;
+
+		if (isFavourite(currentStation)) {
+			newFavourites = favourites.filter(f => f.stationuuid !== currentStation.stationuuid);
+		} else {
+			const { stationuuid, name, favicon, url_resolved } = currentStation;
+			const stationToSave: Station = {
+				stationuuid,
+				name,
+				favicon,
+				url_resolved
+			};
+
+			newFavourites = [...favourites, stationToSave];
+		}
+
+		setFavourites(newFavourites);
+		localStorage.setItem('pixelwave_favourites', JSON.stringify(newFavourites));
+	};
+
 	useEffect(() => {
 		if (!lastMessage) return;
 
 		switch (lastMessage.type) {
 			case 'PLAY_PAUSE':
 				togglePlayPause();
-				break;
-			case 'SET_VOLUME':
-				// setVolume(lastMessage.value);
 				break;
 			case 'SET_STATION':
 				if (lastMessage.station) {
@@ -116,6 +151,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 		beforeChange: (_current: number, next: number) => {
 			setActiveSlide(next);
 			localStorage.setItem('pixelwave_slide_index', next.toString());
+
 			if (document.activeElement instanceof HTMLElement) {
 				document.activeElement.blur();
 			}
@@ -165,9 +201,11 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 									<div className={styles.topBar}>
 										<p>
 											<button
-												className={styles.favouriteButton}
+												className={`${styles.favouriteButton} ${isFavourite(currentStation) ? styles.favorited : ''}`}
+												onClick={toggleFavourite}
+												disabled={!currentStation}
 											>
-												★ Favourite
+												{isFavourite(currentStation) ? '★ Favorited' : '☆ Favourite'}
 											</button>
 										</p>
 										<h2 className={styles.decadeTitle}>

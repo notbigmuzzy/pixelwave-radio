@@ -1,6 +1,6 @@
 # PixelWave TODO
 **Goal:** Create an immersive audio experience where the phone is the remote control, using the React ecosystem to the max.
-**Tech:** React, TypeScript, Vite, Peer.js (WebRTC), Zustand, Framer Motion
+**Tech:** Vite, React, TypeScript, Peer.js (WebRTC), Zustand, WebGL
 
 ---
 
@@ -32,8 +32,8 @@
 2.  **Persistence:**
     *   Saving custom stations to `localStorage`.
 
-# PHASE 4: The Connection (WebRTC / Peer.js)
-1.  **Connection Manager Hook (`usePeerConnection`):**
+# PHASE 4: The Connection (WebRTC / Peer.js) - DONE
+<!-- 1.  **Connection Manager Hook (`usePeerConnection`):**
     *   Initializes Peer.js instance.
     *   Generates session ID.
     *   Handles events: `connection`, `data`, `close`, `error`.
@@ -47,7 +47,7 @@
           | { type: 'PLAY_PAUSE' }
           | { type: 'SET_VOLUME', value: number }
           | { type: 'SEEK', time: number };
-        ```
+        ``` -->
 
 # PHASE 5: The Remote Control
 1.  **Mobile Interface:**
