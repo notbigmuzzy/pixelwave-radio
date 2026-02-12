@@ -202,14 +202,13 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 												{peerId ? (
 													<div className={styles.qrContainer}>
 														<QRCodeSVG
-															value={`${window.location.protocol}//${window.location.host}?remote=${peerId}`}
+															value={`${window.location.origin}${window.location.pathname}?remote=${peerId}`}
 															size={170}
 															fgColor="#fff"
 															bgColor="transparent"
 															level="H"
 															marginSize={2}
 														/>
-
 													</div>
 												) : (
 													<span>Generisanje QR Koda...</span>
