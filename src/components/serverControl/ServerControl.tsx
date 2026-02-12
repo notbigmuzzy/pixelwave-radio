@@ -138,7 +138,8 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 												className={styles.favouriteButton}
 											>
 												★ Favourite
-											</button>										</p>
+											</button>
+										</p>
 										<h2 className={styles.decadeTitle}>{decade.label}</h2>
 										<button
 											className={`${styles.playButton} ${isPlaying ? styles.playing : styles.paused}`}
@@ -153,26 +154,38 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 											{currentStation ? (
 												<div>
 													<p className={styles.nowPlaying}>
-														<strong>{currentStation.name}</strong>
-														<i className={styles.nowPlayingDetails}>
+														<div className={styles.stationInfo}>
 															{currentStation.favicon && <img src={currentStation.favicon} alt="Station Cover" className={styles.coverImage} />}
+															<strong><i></i>{currentStation.name}</strong>
+														</div>
+														<i className={styles.nowPlayingDetails}>
 															<em>{currentStation.country}</em>
 														</i>
 													</p>
 												</div>
 											) : (
-												<p>No Track Selected</p>
+												<p className={styles.noTrack}>No Track Selected</p>
 											)}
 										</div>
-										<div className={styles.remoteSection}>
-											{peerId ? (
-												<div className={styles.qrContainer}>
-													<QRCodeSVG value={`${window.location.protocol}//${window.location.host}?remote=${peerId}`} size={100} />
-												</div>
-											) : (
-												<span>Generisanje QR Koda...</span>
-											)}
-										</div>
+										{currentStation && (
+											<div className={styles.remoteSection}>
+												{peerId ? (
+													<div className={styles.qrContainer}>
+														<QRCodeSVG
+															value={`${window.location.protocol}//${window.location.host}?remote=${peerId}`}
+															size={170}
+															fgColor="#fff"
+															bgColor="transparent"
+															level="H"
+															marginSize={2}
+														/>
+														{/* <div className={styles.qrOverlay}>PIXELWAVE</div> */}
+													</div>
+												) : (
+													<span>Generisanje QR Koda...</span>
+												)}
+											</div>
+										)}
 									</div>
 									<div className={styles.rightSide}>
 										<div
