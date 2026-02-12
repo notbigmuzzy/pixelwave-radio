@@ -9,6 +9,7 @@ import type { PeerMessage } from '../../types';
 import type { DataConnection } from 'peerjs';
 import styles from './ServerControl.module.scss';
 import defaultBg from '../../assets/80s.jpg';
+import { ButterchurnVisualizer } from './ButterchurnVisualizer';
 const stationDataModules = import.meta.glob('../../api/*.json', { eager: true, import: 'default' });
 const bgModules = import.meta.glob('../../assets/*.jpg', { eager: true, import: 'default' });
 const decadeIds = ['40s', '50s', '60s', '70s', '80s', '90s', '00s', '10s', '20s'];
@@ -48,7 +49,6 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 	const {
 		currentStation,
 		isPlaying,
-		status,
 		togglePlayPause,
 		setStation
 	} = usePlayerStore();
@@ -206,14 +206,18 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 				</div>
 			</div>
 			<div className={styles.showWhenPlayerConnected}>
-				<div className={styles.visualizerContainer}></div>
+				<div className={styles.visualizerContainer}>
+					{connection && <ButterchurnVisualizer isPlaying={isPlaying} />}
+				</div>
 
 				<div className={styles.playingDetails}>
 					{currentStation ? (
 						<p className={styles.nowPlaying}>
-							{currentStation.favicon && <img src={currentStation.favicon} alt="Station Cover" className={styles.coverImage} />}
 							<strong>{currentStation.name}</strong>
-							<i><em>{currentStation.country}</em></i>
+							<i className={styles.nowPlayingDetails}>
+								{currentStation.favicon && <img src={currentStation.favicon} alt="Station Cover" className={styles.coverImage} />}
+								<em>{currentStation.country}</em>
+							</i>
 						</p>
 					) : (
 						<p>No Track Selected</p>

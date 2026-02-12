@@ -166,8 +166,20 @@
 
 	.showWhenPlayerConnected {
 		display: flex;
-		align-items: center;
+		align-items: flex-end;
 		justify-content: center;
+
+		.nowPlaying {
+			top: 0;
+
+			strong {
+				font-size: 3rem;
+			}
+		}
+
+		.nowPlayingDetails {
+			justify-content: end;
+		}
 	}
 }
 
@@ -211,8 +223,7 @@
 	height: 100%;
 	z-index: 0;
 	pointer-events: none;
-	background: lightsalmon;
-
+	background: #000;
 }
 
 .playingDetails {

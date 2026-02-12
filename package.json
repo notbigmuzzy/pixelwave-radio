@@ -11,6 +11,8 @@
 	},
 	"dependencies": {
 		"@types/react-slick": "^0.23.13",
+		"butterchurn": "^2.6.7",
+		"butterchurn-presets": "^2.4.7",
 		"framer-motion": "^12.34.0",
 		"howler": "^2.2.4",
 		"peerjs": "^1.5.5",

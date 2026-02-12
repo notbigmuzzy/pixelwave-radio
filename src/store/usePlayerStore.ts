@@ -11,7 +11,6 @@ interface PlayerActions {
 	setStatus: (status: PlaybackStatus) => void;
 }
 
-
 type PlayerStore = PlayerState & PlayerActions;
 export const usePlayerStore = create<PlayerStore>((set) => ({
 	currentStation: null,
