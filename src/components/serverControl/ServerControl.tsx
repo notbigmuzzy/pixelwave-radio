@@ -170,7 +170,9 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 												★ Favourite
 											</button>
 										</p>
-										<h2 className={styles.decadeTitle}>{decade.label}</h2>
+										<h2 className={styles.decadeTitle}>
+											<span>{decade.label}</span>
+										</h2>
 										<button
 											className={`${styles.playButton} ${isPlaying ? styles.playing : styles.paused}`}
 											onClick={togglePlayPause}
@@ -207,7 +209,7 @@ export const ServerControl = ({ peerId, connection, lastMessage }: ServerControl
 															fgColor="#fff"
 															bgColor="transparent"
 															level="H"
-															marginSize={2}
+															marginSize={1}
 														/>
 													</div>
 												) : (
