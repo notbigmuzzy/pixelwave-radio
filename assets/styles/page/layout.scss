@@ -1,0 +1,33 @@
+#page {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+
+#sidebar {
+	display: none;
+	flex-direction: column;
+	width: 200px;
+
+	@media (min-width: 768px) {
+		display: flex;
+	}
+}
+
+#page-body {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	position: relative;
+	transform: matrix(1, 0, 0, 1, 0, 0);
+
+	// @media (min-width: 768px) {
+	// 	width: calc(100% - 200px);
+	// }
+}
+
+#topbar {
+	display: flex;
+	height: 80px;
+	min-height: 80px;
+}

@@ -1,0 +1,37 @@
+NAXI 		- https://naxi128.streaming.rs:9152/;*.mp3
+TDI  		- https://streaming.tdiradio.com/tdiradio.mp3
+JAT  		- https://streaming.radiojat.rs/radiojat.mp3
+NOSTALGIJA 	- https://nostalgie64ssl.streaming.rs:9262/;*.mp3
+ROCK RADIO 	- https://edge9.pink.rs/rockstream
+PLAY 		- https://stream.playradio.rs:8443/play.mp3
+NAXI 80 	- https://naxidigital-80s128ssl.streaming.rs:8042/;*.mp3
+NAXI CAFE	- https://naxidigital-cafe128ssl.streaming.rs:8022/;*.mp3
+KAROLINA	- https://streaming.karolina.rs/karolina.mp3
+PINGVIN		- https://uzivo.radiopingvin.com/strani1
+EVERGREN	- https://naxidigital-evergreen128ssl.streaming.rs:8012/;*.mp3
+DANCE		- https://naxidigital-dance128ssl.streaming.rs:8112/;*.mp3
+FRESH		- https://naxidigital-fresh128ssl.streaming.rs:8212/;*.mp3
+NAXI ROCK 	- https://naxidigital-rock128ssl.streaming.rs:8182/;*.mp3
+LOVE		- https://naxidigital-love128ssl.streaming.rs:8102/;*.mp3
+RADIOS CAFE - https://stream.radios.rs:9012/;*.mp3
+RADIOS ROCK - https://stream.radios.rs:9032/;*.mp3
+RADIO 021 	- https://radio.dukahosting.com/8006/stream/;*.mp3
+CLASSICS 	- https://naxidigital-classic128ssl.streaming.rs:8032/;*.mp3
+AS FM 		- https://mastermedia.shoutca.st/proxy/radioasfm?mp=/stream
+LAGUNA 		- https://live.radiolaguna.rs/laguna
+TOP FM 		- https://topfm64ssl.streaming.rs:9287/;*.mp3
+SIGNAL 		- https://radio.dukahosting.com:7021/;*.mp3
+
+PLAY PARTY  - https://stream.playradio.rs:8443/party.mp3
+PLAY ROCK 	- https://stream.playradio.rs:8443/rock.mp3
+PLAY SOFT 	- https://stream.playradio.rs:8443/soft.mp3
+RED RADIO 	- https://stream.redradio.rs/sid=1
+RADIOS 80 	- https://stream.radios.rs:9036/;*.mp3
+RADIOS EASY - https://stream.radios.rs:9044/;*.mp3
+RADIOS MIX  - https://stream.radios.rs:9010/;*.mp3
+SUPERFM 	- https://onair.superfm.rs/superfm.mp3
+PRVI RADIO  - https://mastermedia.shoutca.st/proxy/prviradioue?mp=/stream
+2000s 		- https://stream.radios.rs:9052/stream
+PLAY URBAN  - https://stream.playradio.rs:8443/urban.mp3
+STUDIO B 	- http://radio.studiob.rs:8004/;?type=http&nocache=3992
+RADIO 101 	- https://as1.radioserveri.com:8090/radio.mp3

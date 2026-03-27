@@ -1,0 +1,29 @@
+div#topbar
+	div.top-left
+		div.logo
+			a(href="index.html")
+				include logo.html
+		filter-list
+			div.filters
+				span.filter-playin LIVE
+				//- span.show-favs Favourites
+				span.filter-all ALL
+				span.filter-search
+					span ᠁
+					input(type='text')
+	div.top-right
+		player-controls
+			stop-button
+				i.left-part
+				i.right-part
+			radio-name 
+				i.radio-name Play That
+				i.radio-label Funky Music
+			website-link
+				a(target="_blank", href="#") 
+					span 
+						b S T A T I O N 
+						i ..
+					span 
+						i ..
+						b W E B S I T E

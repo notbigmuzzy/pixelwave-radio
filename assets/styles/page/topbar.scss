@@ -1,0 +1,190 @@
+#topbar {
+	display: flex;
+	align-items: center;
+	color: #fff;
+	background: #080a0c;
+	padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    background: rgba(2, 3, 3, .8);
+    overflow: hidden;
+
+	.top-left {
+		display: flex;
+		flex-grow: 9;
+	}
+
+	.logo {
+		margin-right: 0;
+		width: 100px;
+		overflow: hidden;
+
+		@media (min-width: 500px) {
+			width: initial;
+			overflow: initial;
+		}
+
+		@media (min-width: 980px) {
+			margin-right: 10px;
+		}
+
+		a {
+			display: flex;
+			flex-direction: column;
+			font-size: 10px;
+			line-height: 1;
+			color: #fff;
+
+			span {
+				color: #fff;
+
+				b {
+					font-weight: 500;
+					color: #fff;
+					background: #fff;
+					opacity: 0.75;
+				}
+
+				i {
+					color: #fff;
+					opacity: 0.1;
+					font-weight: 100;
+				}
+			}
+
+
+			.l-r {
+				color: red;
+				background: red;
+			}
+
+			.l-a {
+				color: cyan;
+				background: cyan;
+			}
+
+			.l-d {
+				color: yellow;
+				background: yellow;
+			}
+
+			.l-i {
+				color: lightgreen;
+				background: lightgreen;
+			}
+
+			.l-o {
+				color: pink;
+				background: pink;
+			}
+			
+		}
+	}
+
+	filter-list {
+		display: none;
+		align-items: end;
+		flex-grow: 9;
+
+		@media (min-width: 980px) {
+			display: flex;
+		}
+
+		.filters {
+			.filter-all,
+			.filter-playin,
+			.filter-search {
+				margin: 0 5px;
+				padding: 10px 15px;
+				font-family: monospace;
+				font-size: 16px;
+				line-height: 1;
+				cursor: pointer;
+				border: 1px dashed transparent;
+
+				&:hover {
+					background-color: #fff;
+					color: #000;
+
+					input {
+						background-color: #fff;
+						color: #000;
+					}
+				}
+			}
+
+			.filter-playin {
+				color: #333;
+				pointer-events: none;
+			}
+
+			.filter-search {
+				font-weight: bold;
+
+				input {
+					width: 0px;
+					border: none;
+					background: transparent;
+					color: #fff;
+					padding: 0;
+					font-size: 16px;
+					font-family: monospace;
+					letter-spacing: 2px;
+					border-bottom: 1px dashed;
+					text-transform: uppercase;
+				}
+
+				&.show-search {
+					span {
+						display: none;
+					}
+
+					input {
+						width: 120px;
+					}
+				}
+			}
+		}
+
+		&.playin-some-stuff .filter-playin {
+			color: #fff;
+			pointer-events: initial;
+		}
+	}
+
+	.menu {
+		display: flex;
+		flex-direction: column;
+		width: 40px;
+		height: 50px;
+
+		span {
+			display: block;
+			height: 10px;
+			margin-bottom: 10px;
+			background: #fff;
+			opacity: 0.75;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		&:hover {
+			span {
+				background: yellow;
+
+				&:first-child {
+					background: cyan;
+				}
+
+				&:last-child {
+					background: lightgreen;
+				}
+			}
+		}
+	}
+}
